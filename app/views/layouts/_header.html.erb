@@ -4,7 +4,7 @@
     <nav>
       <ul class="nav navbar-nav navbar-right">
         <li><%= link_to t(".home"), root_path %></li>
-        <li><% link_to t(".help"), "#" %></li>
+        <li><%= link_to t(".help"), "#" %></li>
         <% if logged_in? %>
           <li><%= link_to t("users"), "#" %></li>
           <li class="dropdown">
@@ -15,7 +15,7 @@
               <li><%= link_to "Profile", current_user %></li>
               <li><%= link_to "Settings", "#" %></li>
               <li class="divider"></li>
-              <li> <%= link_to "Log_out", logout_path, method: :delete %></li>
+              <li> <%= link_to "Log out", logout_path, method: :delete %></li>
             </ul>
           </li>
         <% else %>
@@ -24,4 +24,4 @@
       </ul>
     </nav>
   </div>
-</header> 
+</header>

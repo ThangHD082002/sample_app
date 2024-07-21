@@ -1,2 +1,0 @@
-require('jquery')
-import 'bootstrap'
