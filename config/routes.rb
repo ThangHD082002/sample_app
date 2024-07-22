@@ -13,6 +13,9 @@ Rails.application.routes.draw do
 
   get "/signup", to: "users#new"
   post "/signup", to: "users#create"
-  resources :users, only: :show
+  get "/users/:id/edit", to: "users#edit", as: "edit_user"
+  get "/users", to: "users#index"
+  patch "/users/:id", to: "users#update"
+  resources :users, only: [:show, :destroy]
 
 end
