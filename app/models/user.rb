@@ -3,12 +3,18 @@ class User < ApplicationRecord
 
   before_save :downcase_email
 
+  has_many :microposts, dependent: :destroy
+
   validates :name, presence: true, length: {maximum: 50}
   validates :email, presence: true, length: {maximum: 255},
             format: {with: VALID_EMAIL_REGEX}
   validates :password, presence: true, length: {minimum: 6}, allow_nil: true
 
   has_secure_password
+
+  def feed
+    microposts
+  end
 
   def password_reset_expired?
     reset_sent_at < 2.hours.ago
