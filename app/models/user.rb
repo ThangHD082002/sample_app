@@ -6,6 +6,7 @@ class User < ApplicationRecord
   validates :name, presence: true, length: {maximum: 50}
   validates :email, presence: true, length: {maximum: 255},
             format: {with: VALID_EMAIL_REGEX}
+  validates :password, presence: true, length: {minimum: 6}, allow_nil: true
 
   has_secure_password
   attr_accessor :remember_token
@@ -17,7 +18,7 @@ class User < ApplicationRecord
              else
                BCrypt::Engine.cost
              end
-      BCrypt::Password.create(string, costt: cost)
+      BCrypt::Password.create(string, cost)
     end
 
     def new_token
@@ -35,7 +36,7 @@ class User < ApplicationRecord
   end
 
   def authenticated? remember_token
-    BCrypt::Password.new(remember_digest).is_password? remember_token
+    BCrypt::Password.new(remember_digest).is_password?(remember_token)
   end
 
   private
