@@ -16,6 +16,8 @@ Rails.application.routes.draw do
   get "/users/:id/edit", to: "users#edit", as: "edit_user"
   get "/users", to: "users#index"
   patch "/users/:id", to: "users#update"
+
+  
   resources :users
   resources :password_resets, only: %i(new create edit update)
   resources :account_activations, only: :edit
